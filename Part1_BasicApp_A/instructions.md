@@ -22,14 +22,7 @@ def hello_world():
     return 'Hello Sammy!'
 ```
 
-<!-- ### Step 6
-- Insert into a gunicorn_config.py file:
-```
-bind = "0.0.0.0:8080"
-workers = 2
-``` -->
-
-### Step 7
+### Step 6
 - Local run: 
 `export FLASK_APP=app.py` 
 `sudo -E bash -c 'echo $FLASK_APP'` 
@@ -39,6 +32,3 @@ workers = 2
 `flask run -h localhost -p 3000` 
 `sudo flask run -h localhost -p 80`
 
-### Step 8 
-- Run command for web:
-`sudo python app.py` 
