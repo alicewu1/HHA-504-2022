@@ -23,12 +23,10 @@ def hello_world():
 ```
 
 ### Step 6
-- Local run: 
-`export FLASK_APP=app.py` 
-`sudo -E bash -c 'echo $FLASK_APP'` 
 - Local run command with default: 
 `flask run` 
-- Local run command wiht arguments:  
-`flask run -h localhost -p 3000` 
-`sudo flask run -h localhost -p 80`
+- If you can some error, saying env note found, might need to do this: 
+`export FLASK_APP=app.py` 
+`sudo -E bash -c 'echo $FLASK_APP'` 
+- And then try again 
 
