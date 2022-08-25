@@ -4,13 +4,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello world!'
+    return 'Hello world, WWW!'
 
 
 ## Note, if you want to run this app with the command `python app.py`, you need to add the following line to the end of the file
 ## so it can execute and stay running....
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8001)
+    app.run(debug=True, host='0.0.0.0', port=80)
 
 ##Notes: 
 # - The `debug=True` is used to enable debug mode. This means you have HOT-RELOADING enabled.
