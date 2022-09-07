@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Patient List </title>
+</head>
+<body>
+
+    <div>
+
+        <h1> Patient Table With No Bootstrap</h1>
+            <table>
+                <tr>  
+                    <!-- so this part with the TH tags, deals with setting the table names -->
+                    <th> MRN </th>
+                    <th> First Name </th>
+                    <th> Last Name </th>
+                    <th> DOB </th>
+                </tr>
+                <!-- this next below part is special, where we have the equivalent of a LOOP here -->
+                <!-- where we go through our variable that we have shared via app.py in line 22, listPatients -->
+                <!-- and we are saying for each row in listPatients, which we are defining as 'patient' -->
+                <!-- we could have used i, or x, or any other placeholder/variable instead of patient -->
+                <!-- but typically we like to use a name that makes sense for the type of data that are using -->
+                {% for patient in listPatients %}
+                    <tr>
+                        <td> {{ patient.MRN }} </td>
+                        <td> {{ patient.firstName }} </td>
+                        <td> {{ patient.lastName }} </td>
+                        <td> {{ patient.DOB }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+    </div>
+
+
+</body>
+</html>
