@@ -6,7 +6,9 @@
     <!-- this is the same thing as before, but instead of calling a local file -->
     <!-- we are now calling a file from the CDN, which means we dont need to download anything -->
     <!-- we just need to link to the remote file -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}"> 
+
 </head>
 <body>
 
@@ -15,7 +17,7 @@
             <h1> Patient Table with Bootstrap</h1>
             <!-- as a reminder, the part below that has change,d we have added in class='table' -->
             <!-- this is the same as before, but now we are using bootstrap -->
-            <table class="table">
+            <table class="table table-dark table-striped">
                 <tr>  
                     <th> MRN </th>
                     <th> First Name </th>

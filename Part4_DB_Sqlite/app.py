@@ -16,9 +16,9 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    conn = get_db_connection()
-    patientListSql = conn.execute('SELECT * FROM patient_table').fetchall()
-    conn.close()
+    db = get_db_connection()
+    patientListSql = db.execute('SELECT * FROM patient_table').fetchall()
+    db.close()
     print('patientListSql:', patientListSql)
     return render_template('index.html', listPatients=patientListSql) # note, these are two variables, patientsList is what we can then look up in the .html, and the patientsListSql is the actual data we are pulling from the sqlite db
 
