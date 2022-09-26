@@ -2,4 +2,4 @@
 HHA-507 
 
 ## Instructions
-- instructions will go here in the futre
+- instructions will go here in the future
