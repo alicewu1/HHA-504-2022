@@ -14,5 +14,9 @@ def bootstrap():
 def template():
     return render_template('starter_template.html')
 
+@app.route('/signin')
+def signin():
+    return render_template('signin.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
