@@ -19,18 +19,18 @@
             <!-- this is the same as before, but now we are using bootstrap -->
             <table class="table table-dark table-striped">
                 <tr>  
-                    <th> MRN </th>
+                    <th> Medical Record Number </th>
                     <th> First Name </th>
                     <th> Last Name </th>
                     <th> DOB </th>
                 </tr>
-                {% for patient in listPatients %}
-                    <tr>
-                        <td> {{ patient.MRN }} </td>
-                        <td> {{ patient.firstName }} </td>
-                        <td> {{ patient.lastName }} </td>
-                        <td> {{ patient.DOB }} </td>
-                    </tr>
+                {% for x in data %}
+                <tr>
+                    <td> {{ x.mRn }} </td>
+                    <td> {{ x.firstName }} </td>
+                    <td> {{ x.lastName }} </td>
+                    <td> {{ x.DOB }} </td>
+                </tr>
                 {% endfor %}
             </table>
 

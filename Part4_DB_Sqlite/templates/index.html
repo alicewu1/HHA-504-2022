@@ -13,7 +13,7 @@
             <table>
                 <tr>  
                     <!-- so this part with the TH tags, deals with setting the table names -->
-                    <th> Medical Record Number (MRN) </th>
+                    <th> Medical Record Number </th>
                     <th> First Name (FN) </th>
                     <th> Last Name (LN) </th>
                     <th> Date of Birth (DOB) </th>
@@ -23,7 +23,7 @@
                 <!-- and we are saying for each row in listPatients, which we are defining as 'patient' -->
                 <!-- we could have used i, or x, or any other placeholder/variable instead of patient -->
                 <!-- but typically we like to use a name that makes sense for the type of data that are using -->
-                {% for i in listPatients %}
+                {% for i in data %}
                     <tr>
                         <td> {{ i.mrn }} </td>
                         <td> {{ i.firstname }} </td>

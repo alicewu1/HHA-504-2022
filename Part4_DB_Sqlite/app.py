@@ -14,6 +14,7 @@ def get_db_connection():
     # for more information about these two lines, good conversation on stackoverflow: https://stackoverflow.com/questions/44009452/what-is-the-purpose-of-the-row-factory-method-of-an-sqlite3-connection-object found there
     return conn
 
+
 @app.route('/')
 def index():
     db = get_db_connection()
@@ -28,7 +29,7 @@ def bootstrap():
     patientListSql = conn.execute('SELECT * FROM patient_table').fetchall()
     conn.close()
     print('patientListSql:', patientListSql)
-    return render_template('bootstrap_example.html', listPatients=patientListSql) # note, these are two variables, patientsList is what we can then look up in the .html, and the patientsListSql is the actual data we are pulling from the sqlite db
+    return render_template('bootstrap_example.html', data=patientListSql) # note, these are two variables, patientsList is what we can then look up in the .html, and the patientsListSql is the actual data we are pulling from the sqlite db
 
 
 if __name__ == '__main__':
