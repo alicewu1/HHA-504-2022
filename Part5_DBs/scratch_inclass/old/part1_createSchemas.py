@@ -34,13 +34,15 @@ db_gcp = create_engine(connection_string_gcp)
 #### note to self, need to ensure server_paremters => require_secure_transport is OFF in Azure 
 
 ### show databases
-print(db_azure.table_names())
-print(db_gcp.table_names())
+tableNames_azure = db_azure.table_names()
+tableNames_gcp = db_gcp.table_names()
+
+
 
 
 ### 
 create_table_patients = """
-create table if not exists patients_details_2 (
+create table if not exists patients (
     id int auto_increment,
     mrn varchar(255),
     first_name varchar(255),
