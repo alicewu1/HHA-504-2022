@@ -20,7 +20,7 @@ def droppingFunction_limited(dbList, db_source):
 def droppingFunction_all(dbList, db_source):
     for table in dbList:
         db_source.execute(f'drop table {table}')
-        print(f'dropped table {table}')
+        print(f'dropped table {table} succesfully!')
     else:
         print(f'kept table {table}')
 
@@ -37,6 +37,11 @@ GCP_MYSQL_USER = os.getenv("GCP_MYSQL_USERNAME")
 GCP_MYSQL_PASSWORD = os.getenv("GCP_MYSQL_PASSWORD")
 GCP_MYSQL_DATABASE = os.getenv("GCP_MYSQL_DATABASE")
 
+GCP_MYSQL_HOSTNAME_2 = os.getenv("GCP_MYSQL_HOSTNAME_2")
+GCP_MYSQL_USER_2 = os.getenv("GCP_MYSQL_USERNAME_2")
+GCP_MYSQL_PASSWORD_2 = os.getenv("GCP_MYSQL_PASSWORD_2")
+GCP_MYSQL_DATABASE_2 = os.getenv("GCP_MYSQL_DATABASE_2")
+
 
 ########
 
@@ -46,11 +51,15 @@ db_azure = create_engine(connection_string_azure)
 connection_string_gcp = f'mysql+pymysql://{GCP_MYSQL_USER}:{GCP_MYSQL_PASSWORD}@{GCP_MYSQL_HOSTNAME}:3306/{GCP_MYSQL_DATABASE}'
 db_gcp = create_engine(connection_string_gcp)
 
+connection_string_gcp_2 = f'mysql+pymysql://{GCP_MYSQL_USER_2}:{GCP_MYSQL_PASSWORD_2}@{GCP_MYSQL_HOSTNAME_2}:3306/{GCP_MYSQL_DATABASE_2}'
+db_gcp_2 = create_engine(connection_string_gcp_2)
+
 #### note to self, need to ensure server_paremters => require_secure_transport is OFF in Azure 
 
-### show databases
+### show tables from databases
 tableNames_azure = db_azure.table_names()
 tableNames_gcp = db_gcp.table_names()
+tableNames_gcp_2 = db_gcp_2.table_names()
 
 # reoder tables: production_patient_conditions, production_patient_medications, production_medications, production_patients, production_conditions
 tableNames_azure = ['production_patient_conditions', 'production_patient_medications', 'production_medications', 'production_patients', 'production_conditions']
@@ -130,15 +139,21 @@ create table if not exists production_patient_conditions (
 
 db_gcp.execute(table_prod_patients)
 db_gcp.execute(table_prod_medications)
-db_gcp.execute(table_prod_patients_medications)
 db_gcp.execute(table_prod_conditions)
+db_gcp.execute(table_prod_patients_medications)
 db_gcp.execute(table_prod_patient_conditions)
+
+db_gcp_2.execute(table_prod_patients)
+db_gcp_2.execute(table_prod_medications)
+db_gcp_2.execute(table_prod_conditions)
+db_gcp_2.execute(table_prod_patients_medications)
+db_gcp_2.execute(table_prod_patient_conditions)
 
 
 db_azure.execute(table_prod_patients)
 db_azure.execute(table_prod_medications)
-db_azure.execute(table_prod_patients_medications)
 db_azure.execute(table_prod_conditions)
+db_azure.execute(table_prod_patients_medications)
 db_azure.execute(table_prod_patient_conditions)
 
 

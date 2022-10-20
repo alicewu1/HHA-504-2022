@@ -22,6 +22,11 @@ GCP_MYSQL_USER = os.getenv("GCP_MYSQL_USERNAME")
 GCP_MYSQL_PASSWORD = os.getenv("GCP_MYSQL_PASSWORD")
 GCP_MYSQL_DATABASE = os.getenv("GCP_MYSQL_DATABASE")
 
+GCP_MYSQL_HOSTNAME_2 = os.getenv("GCP_MYSQL_HOSTNAME_2")
+GCP_MYSQL_USER_2 = os.getenv("GCP_MYSQL_USERNAME_2")
+GCP_MYSQL_PASSWORD_2 = os.getenv("GCP_MYSQL_PASSWORD_2")
+GCP_MYSQL_DATABASE_2 = os.getenv("GCP_MYSQL_DATABASE_2")
+
 
 connection_string_azure = f'mysql+pymysql://{AZURE_MYSQL_USER}:{AZURE_MYSQL_PASSWORD}@{AZURE_MYSQL_HOSTNAME}:3306/{AZURE_MYSQL_DATABASE}'
 db_azure = create_engine(connection_string_azure)
@@ -29,9 +34,14 @@ db_azure = create_engine(connection_string_azure)
 connection_string_gcp = f'mysql+pymysql://{GCP_MYSQL_USER}:{GCP_MYSQL_PASSWORD}@{GCP_MYSQL_HOSTNAME}:3306/{GCP_MYSQL_DATABASE}'
 db_gcp = create_engine(connection_string_gcp)
 
+connection_string_gcp_2 = f'mysql+pymysql://{GCP_MYSQL_USER_2}:{GCP_MYSQL_PASSWORD_2}@{GCP_MYSQL_HOSTNAME_2}:3306/{GCP_MYSQL_DATABASE_2}'
+db_gcp_2 = create_engine(connection_string_gcp_2)
+
 ### show databases
 print(db_azure.table_names())
 print(db_gcp.table_names())
+print(db_gcp_2.table_names())
+
 
 
 
