@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+# secret keys and passwords
+Part6_CRUD/fbconfig.json
+Part6_CRUD/firebaseSDKadminkey.json
+
 # C extensions
 *.so
 
