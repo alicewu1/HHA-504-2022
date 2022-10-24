@@ -6,6 +6,14 @@
     - `sudo python3 app.py` 
 - The reason why we need `sudo` permissions here, is that if we are deploying our app on a remote server, to port :80, which is a special port (e.g., website traffic), we need to have elevated permissions
 
+## ENV file structure: 
+```
+MYSQL_USERNAME = "SDF"
+MYSQL_PASSWORD = "fSDFDF!"
+MYSQL_HOST = "104.343.111.186"
+```
+
+
 - Other notes to organize: 
     - using the flask version of sqlalchemy https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/quickstart/ 
     - declaring models https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/models/
