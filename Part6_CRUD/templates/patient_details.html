@@ -13,6 +13,8 @@ the second container is for vitals, the third container is for allergies, and th
                 <h2> Patient Details </h2>
                 <hr>
                 <div class="container">
+
+
                     <div class="row">
 
                         <div class="col md-6">
@@ -35,6 +37,14 @@ the second container is for vitals, the third container is for allergies, and th
                                     <th>Last Name</th>
                                     <td>{{patient_details.last_name}}</td>
                                 </tr>
+                                <tr>
+                                    <th> Zip Code</th>
+                                    <td>{{patient_details.zip_code}}</td>
+                                </tr>
+                                <tr>
+                                    <th> Gender </th>
+                                    <td> {{patient_details.gender}}</td>
+                                </tr>
                             </table>
                         </div>
                         
@@ -49,7 +59,6 @@ the second container is for vitals, the third container is for allergies, and th
                                     <td> 
                                         {{row.icd10_code}} 
                                         <br/>
-                                        <!-- Mapping the list of row.icd10_codes with db_conditions -->
                                         {% for db_condition in db_conditions %}
                                             {% if row.icd10_code == db_condition.icd10_code %}
                                                     {{db_condition.icd10_description}}
@@ -95,7 +104,8 @@ the second container is for vitals, the third container is for allergies, and th
                                                     <label for="icd10_code">Condition Code</label>
                                                     <select class="form-control" name="icd10_code">
                                                         {% for row in db_conditions %}
-                                                            <option value="{{row.icd10_code}}">{{row.icd10_description}}</option>
+                                                        <!-- default option value is none -->
+                                                            <option value="{{row.icd10_code}}" >{{row.icd10_code}} : {{row.icd10_description}}</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
@@ -134,9 +144,7 @@ the second container is for vitals, the third container is for allergies, and th
                                 <tr>
                                     <th>Medication Code</th>
                                     {% for x in patient_medications %}
-                                    <td> 
-                                        {{x.med_ndc}} 
-                                    </td>
+                                    <td>  {{x.med_ndc}} </td>
                                     {% endfor %}
                     
 
