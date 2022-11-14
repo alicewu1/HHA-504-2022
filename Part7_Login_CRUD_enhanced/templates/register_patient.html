@@ -116,15 +116,14 @@
 
     <!-- create a drop down of conditions that is multi-select for the patient to choose between -->
     <!-- this brings in the conditions object and loops through -->
+    <label for="floatingSelect" style="margin-bottom: 0; margin-top: 1em">Conditions</label>
     <div class="form-floating" style="padding-top: 1em; padding-bottom:1em">
-
-        <select class="form-select h-100 w-100" id="conditions" name="conditions" multiple aria-label="multiple select example">
+        <select class="form-select" 
+        id="conditions" name="conditions" multiple aria-label="multiple select example" style="font-size: large; width: auto; height: auto;" >
           {% for condition in conditions %}
             <option value="{{ condition.icd10_code }}">{{ condition.icd10_description }}</option>
           {% endfor %}
         </select>
-        
-        <label for="floatingSelect">Conditions</label>
     </div>
 
 
