@@ -12,16 +12,15 @@ the second container is for vitals, the third container is for allergies, and th
 <!-- create a new container with two columns -->
 <div class="container">
     <div class="row">
+
+
         <div class="col-sm-3">
-
-
-
             <div class="container">
                 <div class="row">
                         <div class="list-group"
                             style="margin-top: 1em; margin-bottom: 1em; margin-left: 1em; margin-right: 1em;">
                                 <a href="/add_condition" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#addcondition">Add New Condition</a>
-                                <a href="#" class="list-group-item list-group-item-action">Add New Medication</a>
+                                <a href="/add_medication" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#addmedication" >Add New Medication</a>
                                 <a href="#" class="list-group-item list-group-item-action">Add New Procedure</a>
                         </div>
                 </div>
@@ -112,7 +111,7 @@ the second container is for vitals, the third container is for allergies, and th
                                                                     <label for="icd10_code">ICD10 Code</label>
                                                                     <select class="form-control" name="icd10_code" id="icd10_code">
                                                                         {% for row in db_conditions %}
-                                                                            <option value="{{row.icd10_code}}" >{{row.icd10_code}} : {{row.icd10_description}}</option>
+                                                                            <option value="{{row.icd10_code}}" >{{row.icd10_description}} : {{row.icd10_code}} </option>
                                                                         {% endfor %}
                                                                     </select>
                                                                     <button class="btn btn-primary" type="submit" style="margin-top: 1em">Insert</button>
@@ -214,11 +213,61 @@ the second container is for vitals, the third container is for allergies, and th
                                         <h3> Medications </h3>
                                         <hr>
                                         <table class="table table-hover table-dark">
+                                      
+
+                                            {% for row in patient_medications %}
+            
                                             <tr>
-                                                <th>Medication Code</th>
-                                                {% for x in patient_medications %}
-                                                <td>  {{x.med_ndc}} </td>
-                                                {% endfor %}
+            
+                                                <td> 
+                                                    {{row.med_ndc}} 
+                                                    <br/>
+                                                    {% for med in db_medications %}
+                                                        {% if row.med_ndc == med.med_ndc %}
+                                                                {{med.med_human_name}}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <br />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <!-- NEW MODEL WINDOW FOR ADDING CONDITION -->
+                                            <div id="addmedication" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Add New Medication</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{url_for('add_medication')}}" method="POST">
+                                                                <div class="form-group">
+                                                                    <label for="mrn">MRN</label>
+                                                                        <input type="text" class="form-control" name="mrn" id="mrn" value="{{patient_details.mrn}}" readonly>
+                                                                    <label for="med_ndc">Med NDC Code</label>
+                                                                    <select class="form-control" name="med_ndc" id="med_ndc">
+                                                                        {% for row in db_medications %}
+                                                                            <option value="{{row.med_ndc}}" >{{row.med_human_name}} : {{row.med_ndc}} </option>
+                                                                        {% endfor %}
+                                                                    </select>
+                                                                    <button class="btn btn-primary" type="submit" style="margin-top: 1em">Insert</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            {% endfor %}
+
+
+                                
                                 
             
                                         </table>

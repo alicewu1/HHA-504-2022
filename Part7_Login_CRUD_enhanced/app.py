@@ -336,6 +336,13 @@ def account():
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
+@app.route('/dashboard')
+def dashboard():
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        return render_template('dashboard.html')
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
@@ -467,6 +474,22 @@ def add_condition(): # note this function needs to match name in html form actio
         ## then return to patient details page
         return redirect(url_for('get_patient_details', mrn=form_mrn))
 
+
+@app.route('/add_medication', methods = ['GET', 'POST'])
+def add_medication(): # note this function needs to match name in html form action
+    if request.method == 'POST':
+        ## get mrn from form
+        form_mrn = request.form.get('mrn')
+        print('form_mrn', form_mrn)
+        form_ndc_code = request.form.get('med_ndc')
+        print('form_icd10_code', form_ndc_code)
+        new_medication = Medications_patient(form_mrn, form_ndc_code)
+        db.session.add(new_medication)
+        db.session.commit()
+        flash("Patient Medication Added Successfully")
+        ## then return to patient details page
+        return redirect(url_for('get_patient_details', mrn=form_mrn))
+
 # this endpoint is for deleting a condition from a patient
 @app.route('/delete_condition', methods = ['GET', 'POST'])
 def delete_condition(): # note this function needs to match name in html form action
@@ -499,8 +522,11 @@ def delete_condition(): # note this function needs to match name in html form ac
 # get all Patients
 @app.route("/api/patients/list", methods=["GET"])
 def get_patients():
-    patients = Patients.query.all()
-    return jsonify([patient.to_json() for patient in patients])
+    if 'loggedin' in session and session['account_type'] == 'admin':
+        patients = Patients.query.all()
+        return jsonify([patient.to_json() for patient in patients])
+    else:
+        return jsonify({'error': 'Not logged in as admin user, try again....'})
 
 # get specific Patient by MRN 
 @app.route("/api/patients/<string:mrn>", methods=["GET"])
