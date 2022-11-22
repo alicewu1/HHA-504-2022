@@ -12,6 +12,8 @@ import datetime
 import uuid
 
 from models import db, Users, Patients, Conditions_patient, Conditions, Medications_patient, Medications, Patients_Photos
+
+
 from dashboard.blueprint import dashboard_blueprint
 
 
@@ -222,7 +224,8 @@ def patient_image():
     if 'loggedin' in session and session['account_type'] == 'patient':
         return render_template("image_upload.html")
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('get_gui_patients'))
+
 
 def render_picture(data):
     render_pic = base64.b64encode(data).decode('ascii') 

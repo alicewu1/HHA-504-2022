@@ -19,6 +19,7 @@ def db_blueprint_dashboard():
         return render_template('login.html')
 
     else:
+
         sample_data = pd.DataFrame({
                 "Vegetables": ["Lettuce", "Cauliflower", "Carrots", "Lettuce", "Cauliflower", "Carrots"],
                 "Amount": [10, 15, 8, 5, 14, 25],
@@ -26,6 +27,11 @@ def db_blueprint_dashboard():
             })
 
         fig = px.bar(sample_data, x="Vegetables", y="Amount", color="City", barmode="stack")
+        fig2 = px.bar(sample_data, x="City", y="Amount", color="Vegetables", barmode="group")
+        
+        print('fig: ', fig)
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+        graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+        print('graphJSON: ', graphJSON)
 
-        return render_template('dashboard.html', graphJSON=graphJSON)
+        return render_template('dashboard.html', graphJSON=graphJSON, graphJSON2=graphJSON2)

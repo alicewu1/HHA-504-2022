@@ -8,18 +8,29 @@
     <h1> Future dashboard page will go here .....</h1>
     
     <body style="font-family:arial, sans-serif">
-        <div id="chart" class="chart"></div>
+        <div id="simple_chart1" class="chart"></div>
     </body>
 
-    
+    <body style="font-family:arial, sans-serif">
+        <div id="simple_chart2" class="chart"></div>
+    </body>
+
+
+
     <!-- just need to load this script in once -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <!-- for each datapoint/graph, need to assign a ID  -->
     <script type="text/javascript">
-        var graphs = {{graphJSON | safe}};
-        Plotly.plot('chart', graphs, {});        
+
+        var graphs = {{graphdata | safe}};
+        var graphs2 = {{graphJSON2 | safe}};
+
+        Plotly.newPlot('simple_chart1', graphs, {});     
+        Plotly.newPlot('simple_chart2', graphs2, {}); 
+            
     </script>
+
 
 
 </div>
