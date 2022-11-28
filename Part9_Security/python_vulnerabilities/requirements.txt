@@ -1,0 +1,2 @@
+cve-bin-tool
+pip-audit

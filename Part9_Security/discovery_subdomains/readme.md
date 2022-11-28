@@ -1,0 +1,15 @@
+# How created Recox: 
+- Install first repo locally: 
+    - `git clone https://github.com/samhaxr/recox`
+- CD into it 
+    - `cd recox` 
+- Make sure that it works 
+    - `sudo chmod +x recox.sh` 
+- Need to get API keys to have it work 
+    - recox/recox.sh 
+        - VTOTAL_API_KEY="" # VIRUSTOTAL API KEY HERE // https://www.virustotal.com/
+        - SHODAN_API_KEY="" # SHODAN API KEY HERE // https://account.shodan.io/ // you can register with .edu and get more access 
+- Now test for dependencies, first load: 
+    - `./recox.sh -h`
+- Then select options 3: Web-Info
+    - then type in the name of subdomain you want to check out 

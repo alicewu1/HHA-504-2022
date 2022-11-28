@@ -1,5 +1,5 @@
 import pandas as pandas
-from PartX import * 
+from Part8b import * 
 
 number1 = 10 
 number2 = 20 

@@ -8,6 +8,14 @@ __pycache__/
 Part6_CRUD/fbconfig.json
 Part6_CRUD/firebaseSDKadminkey.json
 
+# additional repos 
+Part9_Security/discovery_dnsrecon/dnsrecon
+Part9_Security/discovery_subdomains/recox
+Part9_Security/discovery_webapp/Sitadel
+Part9_Security/instrusion_mysql/sqlmap-dev
+
+
+
 # C extensions
 *.so
 
